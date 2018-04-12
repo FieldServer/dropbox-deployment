@@ -17,7 +17,7 @@ module DropboxDeployment
 
     def upload_file(dropbox_client, file, dropbox_path)
       file_name = File.basename(file)
-      content = IO.read(file)
+      content = IO.binread(file)
       @@logger.debug('Uploading ' + file_name + ' to ' + dropbox_path + '/' + file_name)
       dropbox_client.upload dropbox_path + '/' + file_name, content, mode: :overwrite
     end
